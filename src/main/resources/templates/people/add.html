@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add a Person</title>
+</head>
+<body>
+    <ul>
+        <li th:each="person : ${people}">
+            <span th:text="|${person.name}: ${person.age}, favorite color: ${person.favColor}|">Default value</span>
+        </li>
+    </ul>
+    <form action="/people/add" method="POST">
+        <input type="text" name="name" />
+        <input type="text" name="age" />
+        <input type="text" name="favColor" />
+        <!-- input type="submit" value="Submit" /-->
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
