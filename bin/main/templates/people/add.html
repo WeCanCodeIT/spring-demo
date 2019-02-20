@@ -1,3 +1,20 @@
+<!--
+This is our first dynamically generated page!
+
+The first thing to note is 'xmlns:th="http://www.thymeleaf.org"' in the html
+element. You CANNOT render an dynamic content (or use Thymeleaf attributes)
+without having that in the html element.
+
+Next, our li elements in our ul are dynamically generated using TLs enhanced
+for loop syntax (note where there IS and IS NOT the TL bracket syntax). We are
+expecting a Collection being passed to this template and more specifically
+the enhanced for loop. If try to use anything else, we will get errors. We will
+generate a li element (and everything inside) for every member in the Collection
+
+Last, we can reference the property names in TL (i.e. ${person.name}) because TL
+knows to find the corresponding getter in the model Class. If it isn't there or
+is misspelled, you will get errors. 
+-->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
