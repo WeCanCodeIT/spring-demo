@@ -1,10 +1,58 @@
 * {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
-	color: green;
-	font: 24px/1.5 sans-serif;
+  color: #333;
+  font: 18px/1.5 sans-serif;
+}
+
+/* Default Element Styles */
+input {
+  border: 1px solid #aaa;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+}
+input[type="color"] {
+  /* Reset default styles because gross... */
+  border: 0px solid #aaa;
+  height: 2rem;
+  padding: 0;
+  width: 2rem;
+}
+ol,
+ul {
+  list-style: none;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 30rem;
+  width: 89%;
+}
+
+/* Custom Element Styles */
+.btn {
+  background-color: #333;
+  border-radius: 0.25rem;
+  color: #eee;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+}
+.btn--flex-center {
+  align-self: center;
+}
+.main-header {
+  align-items: center;
+  border-bottom: 1px solid #aaa;
+  display: flex;
+  justify-content: space-between;
+}
+.main-header > *:first-child {
+  margin-left: 1rem;
+}
+.main-header > *:last-child {
+  margin-right: 1rem;
 }

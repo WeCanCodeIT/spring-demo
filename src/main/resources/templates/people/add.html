@@ -17,24 +17,54 @@ is misspelled, you will get errors.
 -->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Add a Person</title>
-</head>
-<body>
-    <ul>
-        <li th:each="person : ${people}">
-            <span th:text="|${person.name}: ${person.age}, favorite color: ${person.favColor}|">Default value</span>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/people.css" />
+  </head>
+
+  <body>
+    <header class="main-header">
+      <h1>All People</h1>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="container">
+      <ul class="people">
+        <li th:each="person : ${people}" class="person">
+          <h3
+            th:style="|color: ${person.favColor};|"
+            th:text="${person.name}"
+            class="person__name"
+          >
+            Default Name
+          </h3>
+          <h4 th:text="${person.age}" class="person__age">00</h4>
         </li>
-    </ul>
-    <form action="/people/add" method="POST">
-        <input type="text" name="name" />
-        <input type="text" name="age" />
-        <input type="text" name="favColor" />
+      </ul>
+      <form action="/people/add" method="POST" class="form">
+        <h3>Add a person!</h3>
+        <label class="form__group"
+          >Name: <input type="text" name="name" class="form__input"
+        /></label>
+        <label class="form__group"
+          >Age: <input type="text" name="age" class="form__input"
+        /></label>
+        <label class="form__group"
+          >Favorite Color:
+          <input type="color" name="favColor" class="form__input"
+        /></label>
         <!-- input type="submit" value="Submit" /-->
-        <button type="submit">Submit</button>
-    </form>
-</body>
+        <button class="btn btn--submit btn--flex-center" type="submit">
+          Submit
+        </button>
+      </form>
+    </div>
+  </body>
 </html>
