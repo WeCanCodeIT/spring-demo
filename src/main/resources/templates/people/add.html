@@ -38,12 +38,8 @@ is misspelled, you will get errors.
     <div class="container">
       <ul class="people">
         <li th:each="person : ${people}" class="person">
-          <h3
-            th:style="|color: ${person.favColor};|"
-            th:text="${person.name}"
-            class="person__name"
-          >
-            Default Name
+          <h3 class="person__name">
+            <a th:style="|color: ${person.favColor};|" th:text="${person.name}" th:href="@{|/people/${person.name}|}">Default Name</a>
           </h3>
           <h4 th:text="${person.age}" class="person__age">00</h4>
         </li>

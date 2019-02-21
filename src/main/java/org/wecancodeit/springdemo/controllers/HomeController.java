@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.wecancodeit.springdemo.models.Person;
 import org.wecancodeit.springdemo.repositories.PeopleRepository;
@@ -50,10 +51,22 @@ public class HomeController {
 	 * @param model
 	 * @return thymeleaf template name
 	 */
-	@GetMapping("/people/add")
+	@GetMapping("/people")
 	public String getPersonForm(Model model) {
 		model.addAttribute("people", repo.getPeople());
 		return "people/add";
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/people/{name}")
+	public String getPerson(@PathVariable String name, Model model) {
+		model.addAttribute("person", repo.findPerson(name));
+		return "/people/individual";
 	}
 
 	/**
@@ -78,6 +91,6 @@ public class HomeController {
 	@PostMapping("/people/add")
 	public String addPerson(String name, int age, String favColor) {
 		repo.addPerson(new Person(name, age, favColor));
-		return "redirect:/people/add";
+		return "redirect:/people/" + name;
 	}
 }

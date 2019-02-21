@@ -34,5 +34,15 @@ public class PeopleRepository {
 	public String toString() {
 		return "PeopleRepository [people=" + people + "]";
 	}
+
+	public Person findPerson(String name) {
+		Person foundPerson = null;
+		for (Person person : people) {
+			if (person.getName().equals(name)) {
+				foundPerson = person;
+			}
+		}
+		return foundPerson;
+	}
 	
 }
