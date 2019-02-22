@@ -1,6 +1,6 @@
 package org.wecancodeit.springdemo.controllers;
 
-import java.util.ArrayList;
+import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +24,8 @@ public class HomeController {
 	 * We inject the list though Constructor Injection so we have more control over
 	 * our implementation at the time of creation.
 	 */
-	private PeopleRepository repo = new PeopleRepository(new ArrayList<Person>());
+	@Resource
+	PeopleRepository repo;
 
 	/**
 	 * Our Get Mapping only requests data from our server environment. So in this
@@ -53,7 +54,7 @@ public class HomeController {
 	 */
 	@GetMapping("/people")
 	public String getPersonForm(Model model) {
-		model.addAttribute("people", repo.getPeople());
+		model.addAttribute("people", repo.findAll());
 		return "people/add";
 	}
 	
@@ -63,11 +64,25 @@ public class HomeController {
 	 * @param model
 	 * @return
 	 */
-	@GetMapping("/people/{name}")
-	public String getPerson(@PathVariable String name, Model model) {
-		model.addAttribute("person", repo.findPerson(name));
+	@GetMapping("/people/{id}")
+	public String getPerson(@PathVariable Long id, Model model) {
+		// .get() returns the actual person from the Optional
+		// More on Optionals in coming weeks
+		model.addAttribute("person", repo.findById(id).get());
 		return "/people/individual";
 	}
+	
+//	@GetMapping("/people/name/{name}") // Don't do this because bad
+//	public String findPersonByName(@PathVariable String name, Model model) {
+//		model.addAttribute("person", repo.findByName(name));
+//		return "/people/individual";
+//	}
+//	
+//	@GetMapping("/people/age/{age}") // Don't do this because bad
+//	public String findPersonByName(@PathVariable int age, Model model) {
+//		model.addAttribute("person", repo.findByAge(age));
+//		return "/people/individual";
+//	}
 
 	/**
 	 * With our post mapping, we are expecting data from our user that will some how
@@ -90,7 +105,7 @@ public class HomeController {
 	 */
 	@PostMapping("/people/add")
 	public String addPerson(String name, int age, String favColor) {
-		repo.addPerson(new Person(name, age, favColor));
-		return "redirect:/people/" + name;
+		repo.save(new Person(name, age, favColor));
+		return "redirect:/people";
 	}
 }

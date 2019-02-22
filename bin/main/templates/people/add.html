@@ -37,10 +37,9 @@ is misspelled, you will get errors.
     </header>
     <div class="container">
       <ul class="people">
-          <li th:text="${people}"></li>
         <li th:each="person : ${people}" class="person">
           <h3 class="person__name">
-            <a th:style="|color: ${person.favColor};|" th:text="${person.name}" th:href="@{|/people/${person.name}|}">Default Name</a>
+            <a th:style="|color: ${person.favColor};|" th:text="${person.name}" th:href="@{|/people/${person.id}|}">Default Name</a>
           </h3>
           <h4 th:text="${person.age}" class="person__age">00</h4>
         </li>

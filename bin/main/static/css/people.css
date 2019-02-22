@@ -1,0 +1,33 @@
+.people {
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.person {
+  border-bottom: 1px solid #aaa;
+  display: flex;
+  padding: 0.5rem 1rem;
+}
+
+.person__age {
+  margin-left: 1rem;
+}
+
+.form {
+  border: 1px solid #aaa;
+  border-radius: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 1rem;
+}
+
+.form__group {
+  align-items: center;
+  display: flex;
+  margin-bottom: 0.75rem;
+}
+
+.form__input {
+  flex: 1 1 0;
+  margin-left: 1rem;
+}

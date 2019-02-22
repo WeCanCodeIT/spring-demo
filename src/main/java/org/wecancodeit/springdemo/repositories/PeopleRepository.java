@@ -1,48 +1,13 @@
 package org.wecancodeit.springdemo.repositories;
 
-import java.util.List;
-
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 import org.wecancodeit.springdemo.models.Person;
 
-/**
- * This will be a good resource to see what repositories do in the
- * Spring Framework.
- * 
- * This is only meant to keep a list of Person(s) and any logic to manipulate
- * their data through the Collection
- * 
- * @author donhamiltoniii
- *
- */
-public class PeopleRepository {
-	
-	private List<Person> people;
+@Repository
+public interface PeopleRepository extends CrudRepository<Person, Long> {
 
-	public PeopleRepository(List<Person> people) {
-		this.people = people;
-	}
+//	Person findByName(String name);
+//	Person findByAge(int age);
 
-	public List<Person> getPeople() {
-		return people;
-	}
-	
-	public void addPerson(Person person) {
-		people.add(person);
-	}
-
-	@Override
-	public String toString() {
-		return "PeopleRepository [people=" + people + "]";
-	}
-
-	public Person findPerson(String name) {
-		Person foundPerson = null;
-		for (Person person : people) {
-			if (person.getName().equals(name)) {
-				foundPerson = person;
-			}
-		}
-		return foundPerson;
-	}
-	
 }
