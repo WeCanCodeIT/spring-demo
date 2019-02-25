@@ -7,4 +7,9 @@ import org.wecancodeit.springdemo.models.Address;
 @Repository
 public interface AddressRepository extends CrudRepository<Address, Long> {
 
+	Address findByStreetName(String streetName);
+
+	Address findByStreetNameAndCityAndStateNameAndZipCode(String streetName, String city, String stateName,
+			String zipCode);
+
 }

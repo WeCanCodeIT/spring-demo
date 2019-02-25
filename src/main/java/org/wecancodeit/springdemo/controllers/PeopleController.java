@@ -109,7 +109,10 @@ public class PeopleController {
 			String zipCode
 	) {
 		// Talk about this later
-		Address address = addressRepo.save(new Address(streetName, city, stateName, zipCode));
+		Address address = addressRepo.findByStreetNameAndCityAndStateNameAndZipCode(streetName, city, stateName, zipCode);
+		if (address == null) {
+			address = addressRepo.save(new Address(streetName, city, stateName, zipCode));
+		}
 		peopleRepo.save(new Person(name, age, favColor, address));
 		return "redirect:/people";
 	}
