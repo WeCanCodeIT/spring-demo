@@ -9,9 +9,23 @@
     <link rel="stylesheet" href="/css/people.css">
 </head>
 <body>
-    <div th:style="|background-color: ${person.favColor}|" class="container">
-        <h1 th:text="${person.name}">Default Name</h1>
-        <h2 th:text="${person.age}">Default Age</h2>
-    </div>
+    <header th:style="|background-color: ${person.favColor}|">
+        <div class="container">
+            <h1 th:text="${person.name}">Default Name</h1>
+            <h2 th:text="${person.age}">Default Age</h2>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <address>
+                <h3 th:text="${person.address.streetName}">331 E Evelyn Ave</h3>
+                <h4>
+                    <span th:text="${person.address.city}">Mountain View</span>, 
+                    <span th:text="${person.address.stateName}">CA</span>
+                </h4>
+                <h4 th:text="${person.address.zipCode}">55555</h4>
+            </address>
+        </div>
+    </main>
 </body>
 </html>

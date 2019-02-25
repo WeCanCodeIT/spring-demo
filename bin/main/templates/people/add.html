@@ -46,6 +46,7 @@ is misspelled, you will get errors.
       </ul>
       <form action="/people/add" method="POST" class="form">
         <h3>Add a person!</h3>
+        <!-- Info to build a person -->
         <label class="form__group"
           >Name: <input type="text" name="name" class="form__input"
         /></label>
@@ -56,6 +57,21 @@ is misspelled, you will get errors.
           >Favorite Color:
           <input type="color" name="favColor" class="form__input"
         /></label>
+
+        <!-- Info to build an address -->
+        <label class="form__group">
+          Street Address: <input type="text" name="streetName" class="form__input"/>
+        </label>
+        <label class="form__group">
+          City: <input type="text" name="city" class="form__input"/>
+        </label>
+        <label class="form__group">
+          State: <input type="text" name="stateName" class="form__input"/>
+        </label>
+        <label class="form__group">
+          Zip: <input type="text" name="zipCode" class="form__input"/>
+        </label>
+        
         <!-- input type="submit" value="Submit" /-->
         <button class="btn btn--submit btn--flex-center" type="submit">
           Submit

@@ -3,6 +3,7 @@ package org.wecancodeit.springdemo.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  * Person is just a POJO similar to a VirtualPet (or any version of a
@@ -23,13 +24,17 @@ public class Person {
 	private int age;
 	private String favColor;
 	
+	@ManyToOne
+	private Address address;
+
 	// Don't use this constructor - Just for JPA
 	public Person() {}
 
-	public Person(String name, int age, String favColor) {
+	public Person(String name, int age, String favColor, Address address) {
 		this.name = name;
 		this.age = age;
 		this.favColor = favColor;
+		this.address = address;
 	}
 	
 	public Long getId() {
@@ -46,6 +51,10 @@ public class Person {
 
 	public String getFavColor() {
 		return favColor;
+	}
+	
+	public Address getAddress() {
+		return address;
 	}
 
 	@Override
