@@ -31,7 +31,7 @@ public class Person {
 	@ManyToOne
 	private Address address;
 
-	@ManyToMany(mappedBy="people")
+	@ManyToMany
 	private Collection<Friendship> friendships;
 
 	// Don't use this constructor - Just for JPA
