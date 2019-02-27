@@ -1,0 +1,77 @@
+<!--
+This is our first dynamically generated page!
+
+The first thing to note is 'xmlns:th="http://www.thymeleaf.org"' in the html
+element. You CANNOT render an dynamic content (or use Thymeleaf attributes)
+without having that in the html element.
+
+Next, our li elements in our ul are dynamically generated using TLs enhanced
+for loop syntax (note where there IS and IS NOT the TL bracket syntax). We are
+expecting a Collection being passed to this template and more specifically
+the enhanced for loop. If try to use anything else, we will get errors. We will
+generate a li element (and everything inside) for every member in the Collection
+
+Last, we can reference the property names in TL (i.e. ${person.name}) because TL
+knows to find the corresponding getter in the model Class. If it isn't there or
+is misspelled, you will get errors. 
+-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Add a Friendship</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/people.css" />
+  </head>
+
+  <body>
+    <header class="main-header">
+      <h1>All Friendship</h1>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="container">
+      <ul class="friendships">
+        <li th:each="friendship : ${friendships}" class="friendship">
+          <h3 class="friendship__name">
+            <a th:text="${friendship.name}" th:href="@{|/friendships/${friendship.id}|}">Default Name</a>
+          </h3>
+        </li>
+      </ul>
+      <!-- form action="/friendships/add" method="POST" class="form">
+        <h3>Add a person!</h3>
+        <label class="form__group"
+          >Name: <input type="text" name="name" class="form__input"
+        /></label>
+        <label class="form__group"
+          >Age: <input type="text" name="age" class="form__input"
+        /></label>
+        <label class="form__group"
+          >Favorite Color:
+          <input type="color" name="favColor" class="form__input"
+        /></label>
+
+        <label class="form__group">
+          Street Address: <input type="text" name="streetName" class="form__input"/>
+        </label>
+        <label class="form__group">
+          City: <input type="text" name="city" class="form__input"/>
+        </label>
+        <label class="form__group">
+          State: <input type="text" name="stateName" class="form__input"/>
+        </label>
+        <label class="form__group">
+          Zip: <input type="text" name="zipCode" class="form__input"/>
+        </label>
+        <button class="btn btn--submit btn--flex-center" type="submit">
+          Submit
+        </button>
+      </form -->
+    </div>
+  </body>
+</html>

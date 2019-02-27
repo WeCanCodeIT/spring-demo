@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.wecancodeit.springdemo.models.Address;
+import org.wecancodeit.springdemo.models.Friendship;
 import org.wecancodeit.springdemo.models.Person;
 import org.wecancodeit.springdemo.repositories.AddressRepository;
+import org.wecancodeit.springdemo.repositories.FriendshipRepository;
 import org.wecancodeit.springdemo.repositories.PeopleRepository;
 
 @Controller
@@ -33,6 +35,9 @@ public class PeopleController {
 
 	@Resource
 	AddressRepository addressRepo;
+	
+	@Resource
+	FriendshipRepository friendshipRepo;
 
 	/**
 	 * Here we are expecting an instance of the model interface which allows us to
@@ -64,6 +69,7 @@ public class PeopleController {
 		// .get() returns the actual person from the Optional
 		// More on Optionals in coming weeks
 		model.addAttribute("person", peopleRepo.findById(id).get());
+		model.addAttribute("allFriendships", friendshipRepo.findAll());
 		return "/people/individual";
 	}
 
@@ -115,5 +121,14 @@ public class PeopleController {
 		}
 		peopleRepo.save(new Person(name, age, favColor, address));
 		return "redirect:/people";
+	}
+	
+	@PostMapping("/{personId}/add")
+	public String addFriendshipToPerson(@PathVariable Long personId, Long friendshipId) {
+		Person personToAddTo = peopleRepo.findById(personId).get();
+		Friendship friendshipToAdd = friendshipRepo.findById(friendshipId).get();
+		personToAddTo.addFriendshipToPerson(friendshipToAdd);
+		peopleRepo.save(personToAddTo);
+		return "redirect:/people/" + personId;
 	}
 }

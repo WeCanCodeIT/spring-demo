@@ -25,6 +25,17 @@
                 </h4>
                 <h4 th:text="${person.address.zipCode}">55555</h4>
             </address>
+            
+            <ul>
+            	<li th:each="friendship : ${person.friendships}" th:text="${friendship.name}"></li>
+            </ul>
+            
+            <form th:action="@{|/people/${person.id}/add|}" method="POST">
+            	<select name="friendshipId">
+            		<option th:each="friendship : ${allFriendships}" th:value="${friendship.id}" th:text="${friendship.name}"></option>
+            	</select>
+            	<button type="submit">Submit</button>
+            </form>
         </div>
     </main>
 </body>

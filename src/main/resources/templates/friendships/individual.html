@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title th:text="${friendship.name}">Document</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/people.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 th:text="${friendship.name}">Default Name</h1>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <ul>
+            	<li th:each="person : ${friendship.people}">
+            		<a th:href="@{|/people/${person.id}|}" th:text="${person.name}"></a>
+            	</li>
+            </ul>
+            
+            <form th:action="@{|/friendships/${friendship.id}/add|}" method="POST">
+            	<select name="personId">
+            		<option th:each="person : ${allPeople}" th:value="${person.id}" th:text="${person.name}"></option>
+            	</select>
+            	<button type="submit">Submit</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
