@@ -20,11 +20,26 @@ public class Initializer implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Address address = addressRepo.save(new Address("123 Fake Street", "Columbus", "OH", "43202"));
+		String wuTangYellow = "#e2a42b";
+		String defSquadBlue = "#39add1";
 		
-		peopleRepo.save(new Person("Ajax", 31, "#39add1", address));
-		peopleRepo.save(new Person("JavaScript", 41, "#c0ffee", address));
-		peopleRepo.save(new Person("Java", 51, "#bada55", address));
+		Address parkHillProjects = addressRepo.save(new Address("260 Park Hill Ave", "Staten Island", "NY", "10304"));
+		Address brickCity = addressRepo.save(new Address("123 Brick City Ave", "Newark", "NJ", "07101"));
+		
+		peopleRepo.save(new Person("Method Man", 47, wuTangYellow, parkHillProjects));
+		peopleRepo.save(new Person("RZA", 49, wuTangYellow, parkHillProjects));
+		peopleRepo.save(new Person("GZA", 52, wuTangYellow, parkHillProjects));
+		peopleRepo.save(new Person("Raekwon", 49, wuTangYellow, parkHillProjects));
+		peopleRepo.save(new Person("Ghostface Killah", 48, wuTangYellow, parkHillProjects));
+		peopleRepo.save(new Person("Inspectah Deck", 48, wuTangYellow, parkHillProjects));
+		peopleRepo.save(new Person("U-God", 48, wuTangYellow, parkHillProjects));
+		peopleRepo.save(new Person("Ol' Dirty Bastard (RIP)", 50, wuTangYellow, parkHillProjects));
+		peopleRepo.save(new Person("Masta Killa", 49, wuTangYellow, parkHillProjects));
+
+		peopleRepo.save(new Person("Redman", 48, defSquadBlue, brickCity));
+		peopleRepo.save(new Person("Erick Sermon", 50, defSquadBlue, brickCity));
+		peopleRepo.save(new Person("Keith Murray", 44, defSquadBlue, brickCity));
+		
 	}
 
 }
